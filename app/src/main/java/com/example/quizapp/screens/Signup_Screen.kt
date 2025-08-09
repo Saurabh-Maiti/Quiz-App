@@ -30,7 +30,7 @@ fun Signup_Screen(navController: NavController) {
     var password by remember { mutableStateOf("") }
     var expanded by remember { mutableStateOf(false) }
 
-    val typeOptions = listOf("Student", "Teacher")
+    val typeOptions = listOf("Student", "Professor")
 
     Column(
         modifier = Modifier
@@ -133,7 +133,11 @@ fun Signup_Screen(navController: NavController) {
         OutlinedTextField(
             value = roll_no,
             onValueChange = { roll_no = it },
-            placeholder = { Text("Roll No", color = Color.Black) },
+            placeholder = { Text(
+                if (type == "") "Roll No or Employee ID" else if(type=="Professor") "Employee ID" else "Roll No",
+                color = Color.Black
+
+            ) },
             singleLine = true,
             shape = RoundedCornerShape(32.dp),
             colors = OutlinedTextFieldDefaults.colors(
